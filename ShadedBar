@@ -1,0 +1,22 @@
+
+import java.util.*;
+import java.awt.*;
+public class ShadedBar
+{
+   private int xVal;
+   private int yVal;
+   private Color color;   
+   public ShadedBar(int x,int y,Color color)
+   {
+      xVal=x;
+      yVal=y;
+      this.color=color;
+   }
+   
+    public void draw(Graphics2D s2)
+    {
+        Rectangle rect=new Rectangle(xVal,yVal,5000,100);
+        s2.setColor(color);
+        s2.fill(rect);
+    }
+}
