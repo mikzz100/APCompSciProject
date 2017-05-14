@@ -1,0 +1,23 @@
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JComponent;
+import java.awt.Color;
+/**
+ * Write a description of class ShadedBarGUI here.
+ * 
+ * @author (Michael Bagamian) 
+ * @version (5/11/17)
+ */
+public class ShadedBarGUI extends JComponent
+{
+    private int x1 = 0;
+    private int y1 = 50;
+    public void paintComponent(Graphics g)
+    {
+        Graphics2D g2 = (Graphics2D) g;
+        ShadedBar rect1 = new ShadedBar(x1, y1, Color.blue);
+        rect1.draw(g2);
+    }
+}
+
