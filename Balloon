@@ -1,0 +1,58 @@
+import java.awt.*;
+import javax.swing.*;
+
+public class Balloon
+{
+    private int x;
+    private int y;
+    private int height;
+    private int width;
+    private String letter;
+    private String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}; 
+
+    public Balloon(int x, int y, int h, int w)
+    {
+        int rdmNum = (int) (Math.random() * 26);
+        letter = alphabet[rdmNum];
+
+        this.x=x;
+        this.y=y;
+        height=h;
+        width=w;
+    }
+
+    public void draw(Graphics g)
+    {
+        g.setColor(Color.red);
+        g.fillOval(x,y, height, width);
+        g.drawLine(x+12, y+35, x+12, y+75);
+        g.setColor(Color.black);
+        g.drawString(letter,x+10,y+15);
+    }
+
+    public String getLetter()
+    {
+        return letter;
+    }
+
+    public int getX()
+    {
+        return x;
+    }
+
+    public int getY()
+    {
+        return y;
+    }
+
+    public void setY(int yVal)
+    {
+        y = yVal;
+    }
+
+    public void setX(int xVal)
+    {
+        x = xVal;
+    }
+}
+
