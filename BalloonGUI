@@ -1,0 +1,39 @@
+/**
+ * Write a description of class BalloonGUI here.
+ * 
+ * @author (Jason) 
+ * @version (5/11/17)
+ */
+
+import java.awt.*;
+import javax.swing.*;
+
+public class BalloonGUI extends JComponent
+{
+    private int x = 1000;
+    private int y = 500;
+    private Balloon balloon = new Balloon(x, y, 25, 35);
+
+    public void paintComponent(Graphics g)
+    {
+        Graphics2D g2 = (Graphics2D) g;
+        balloon.draw(g2);
+        Balloon balloonCopy = new Balloon(balloon.getX(), balloon.getY(), 25, 35);
+
+    }
+
+    public void moveBy(int x, int y)
+    {
+        if(this.y == 0)
+        {
+            y = 0;
+        }
+        else
+        {
+            balloon.setY(this.y -= y);
+            balloon.setX(this.x -= x);
+            repaint();
+        }
+    }
+}
+
