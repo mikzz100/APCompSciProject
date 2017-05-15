@@ -10,6 +10,7 @@ public class Balloon
     private String letter;
     private String[] alphabet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}; 
 
+    //Creates a Balloon Object with (x,y) coordinate, with a randomly assigned letter
     public Balloon(int x, int y, int h, int w)
     {
         int rdmNum = (int) (Math.random() * 26);
@@ -30,26 +31,31 @@ public class Balloon
         g.drawString(letter,x+10,y+15);
     }
 
+    //Returns the assigned letter
     public String getLetter()
     {
         return letter;
     }
 
+    //Return the x-coordinate
     public int getX()
     {
         return x;
     }
 
+    //Returns the y-coordinate
     public int getY()
     {
         return y;
     }
 
+    //Sets the y-coordinate to yVal
     public void setY(int yVal)
     {
         y = yVal;
     }
 
+    //Sets the x-coordinate to xVal
     public void setX(int xVal)
     {
         x = xVal;
