@@ -1,1 +1,41 @@
 
+/**
+ * Write a description of class PlayerStatus here.
+ * 
+ * Lashan Wijayawickrama
+ * 5/15/17
+ */
+public class PlayerStatus
+{
+    private int health;
+    private int score;
+
+    public PlayerStatus(int h, int s)
+    {
+        health=h;
+        score=s;
+
+    }
+
+    public void setHealth()
+    {
+        health--;
+    }
+
+    public int getHealth()
+    {
+        return health;
+    }
+
+    public void setScore()
+    {
+        score++;
+    }
+
+    public int getScore()
+    {
+        return score;
+    }    
+}
+
+  
