@@ -37,3 +37,63 @@ public class Runner
         t.start();
     }
 }
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
+import javax.swing.Timer;
+import java.io.File;
+import javax.imageio.ImageIO;
+/**
+ * Write a description of class Runner here.
+ * 
+ * @author (Michael Bagamian) 
+ * @version (5/15/17)
+ */
+public class Runner
+{
+    private static final int FRAME_WIDTH = 3000;
+    private static final int FRAME_HEIGHT = 1000;
+
+    public static void main(String[] args)
+    {
+        JFrame frame = new JFrame();
+        JPanel pane=new JPanel();
+        ImageIcon imageIcon = new ImageIcon("images.jpg"); //url: http://bhstorm.com/beautiful-sky-wallpapers-mobile/
+        Image image = imageIcon.getImage();
+        Image img2 = image.getScaledInstance(500,500, java.awt.Image.SCALE_SMOOTH); 
+        imageIcon = new ImageIcon(img2);
+        JLabel label=new JLabel(imageIcon);
+        BalloonGUI component = new BalloonGUI();
+        ShadedBarGUI component2=new ShadedBarGUI();
+        pane.setLayout(new BoxLayout(pane,BoxLayout.PAGE_AXIS)); 
+        pane.add(label, BorderLayout.CENTER); 
+        pane.add(component2);
+        pane.add(component);        
+        frame.add(pane);        
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        frame.setTitle("Balloons Moving");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         
+        
+        
+        
+        frame.setVisible(true);
+
+        class TimerListener implements ActionListener
+        {
+            public void actionPerformed(ActionEvent event)
+            {
+                component.moveBy(0, 2);
+            }
+        }
+
+        ActionListener listener = new TimerListener();
+
+        final int DELAY = 100; // Milliseconds between timer ticks
+        Timer t = new Timer(DELAY, listener);
+        t.start();
+    }
+}
