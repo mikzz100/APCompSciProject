@@ -12,14 +12,13 @@ public class BalloonGUI extends JComponent
 {
     private int x = 1000;
     private int y = 500;
-    private Balloon balloon = new Balloon(x, y, 25, 35);
+    private Balloon balloon = new Balloon();
 
     public void paintComponent(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;
         balloon.draw(g2);
-        Balloon balloonCopy = new Balloon(balloon.getX(), balloon.getY(), 25, 35);
-
+        Balloon balloonCopy = new Balloon();
     }
 
     public void moveBy(int x, int y)
@@ -35,5 +34,6 @@ public class BalloonGUI extends JComponent
             repaint();
         }
     }
+    
+    
 }
-
