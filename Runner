@@ -1,32 +1,68 @@
-import javax.swing.JFrame;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import javax.swing.Timer;
+import java.io.File;
+import javax.imageio.ImageIO;
+import java.util.*;
 
+/**
+ * Write a description of class Runner here.
+ * 
+ * @author (Michael Bagamian) 
+ * @version (5/15/17)
+ */
 public class Runner
 {
     private static final int FRAME_WIDTH = 3000;
     private static final int FRAME_HEIGHT = 1000;
-
+    private static ArrayList<BalloonGUI> balloonList = new ArrayList<BalloonGUI>();	
     public static void main(String[] args)
     {
         JFrame frame = new JFrame();
+        JPanel pane = new JPanel();
+        pane.setBounds(0,0,1000,500);
+        //ImageIcon imageIcon = new ImageIcon("images.jpg"); //url: http://bhstorm.com/beautiful-sky-wallpapers-mobile/
+        //Image image = imageIcon.getImage();
+        //Image img2 = image.getScaledInstance(500,500, java.awt.Image.SCALE_SMOOTH); 
+        //imageIcon = new ImageIcon(img2);
+        //JLabel label=new JLabel(imageIcon);
+        ShadedBarGUI component2 = new ShadedBarGUI();
+        PlayerStatus player = new PlayerStatus();
+        BalloonGUI component = new BalloonGUI();
 
+        pane.setLayout(new BoxLayout(pane,BoxLayout.PAGE_AXIS)); 
+        //pane.add(label, BorderLayout.CENTER); 
+        frame.add(pane);        
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setTitle("Balloons Moving");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        final BalloonGUI component = new BalloonGUI();
-        frame.add(component);
-
         frame.setVisible(true);
+
+        pane.add(component2);
+        pane.add(component);
+        
+        for(int i = 0; 5 > i; i++)
+        {
+            BalloonGUI balloon = new BalloonGUI();
+            balloonList.add(balloon);
+            for(int j = 0; j < balloonList.size(); j++)
+            {
+                pane.add(balloonList.get(i));
+            }
+        }
 
         class TimerListener implements ActionListener
         {
             public void actionPerformed(ActionEvent event)
             {
-                component.moveBy(0, 2);
+                for(int j = 0; j < balloonList.size(); j++)
+                {
+                    (balloonList.get(j)).moveBy(0,2);
+                }
             }
         }
 
