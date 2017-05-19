@@ -13,14 +13,14 @@ public class Balloon
     //Creates a Balloon Object with default values
     public Balloon()
     {
-       x = (int) (Math.random() * 1000);
-       y = 500;
-       int rdmNum = (int) (Math.random() * 26);
-       letter = alphabet[rdmNum];
-       height = 25
-       weidth = 35
+        x = (int) (Math.random() * 1000);
+        y = 650;
+        int rdmNum = (int) (Math.random() * 26);
+        letter = alphabet[rdmNum];
+        height = 25;
+        width = 35;
     }
-   
+
     public void draw(Graphics g)
     {
         g.setColor(Color.red);
