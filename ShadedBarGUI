@@ -8,60 +8,65 @@ import java.util.*;
  * @author (Michael Bagamian) 
  * @version (5/11/17)
  */
-public class ShadedBarGUI extends JComponent implements KeyListener
+public class ShadedBarGUI extends JPanel//implements KeyListener
 {
     private int x1 = 0;
-    private int y1 = 50;
-    private char keyboardLetter;
-    private PlayerStatus player = new PlayerStatus();
-    private ArrayList<String> list = new ArrayList<String>();
+    private int y1 = 75;
+    //    private char keyboardLetter;
+    //     private PlayerStatus player = new PlayerStatus();
+    //     private ArrayList<String> list = new ArrayList<String>();
 
     public void paintComponent(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;
-        ShadedBar rect1 = new ShadedBar(x1, y1, Color.blue);
-        Balloon 
+        ShadedBar rect1 = new ShadedBar(x1, y1, Color.pink);
         rect1.draw(g2);
     }
 
-    public void searchBalloon()
-    {
-        if(balloon.getY() >= y1)
-        {
-            setLetter();
-        }
-    }
+    //     public void addBalloon()
+    //     {
+    // 
+    //     }
+    // 
+    //     public void searchBalloon()
+    //     {
+    //         if(balloon.getY() >= y1)
+    //         {
+    //             setLetter();
+    //         }
+    //     }
+    // 
+    //     public void setLetter()
+    //     {
+    //         list.add(balloon.getLetter());
+    //     }
+    // 
+    // Compares the Randomly assigned balloon letter to the User's keyboard letter
+    //     public boolean compareBalloon(Balloon balloon)
+    //     {
+    //         if(list.contains(keyboardLetter + ""))
+    //         {
+    //             player.setScore();
+    //             list.remove(keyboardLetter);
+    //             return true;
+    //         }
+    //         else 
+    //         {
+    //             player.setHealth();
+    //             return false;
+    //         }
+    //     }
 
-    public void setLetter()
-    {
-        list.add(balloon.getLetter());
-    }
-
-    //Compares the Randomly assigned balloon letter to the User's keyboard letter
-    public boolean compareBalloon(Balloon balloon)
-    {
-        if(list.contains(keyboardLetter + ""))
-        {
-            player.setScore();
-            return true;
-        }
-        else 
-        {
-            player.setHealth();
-            return false;
-        }
-    }
-
-    public void keyTyped(KeyEvent e)
-    {        
-    }
-
-    public void keyPressed(KeyEvent e)
-    {
-        keyboardLetter = e.getKeyChar();
-    }
-
-    public void keyReleased(KeyEvent e)
-    {
-    }
+    //         public void keyTyped(KeyEvent e)
+    //         {        
+    //         }
+    //     
+    //         public void keyPressed(KeyEvent e)
+    //         {
+    //             keyboardLetter = e.getKeyChar();
+    //         }
+    //     
+    //         public void keyReleased(KeyEvent e)
+    //         {
+    //         }
 }
