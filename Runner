@@ -1,4 +1,6 @@
 import java.awt.*;
+import javax.swing.OverlayLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -12,40 +14,52 @@ import java.util.*;
  * Write a description of class Runner here.
  * 
  * @author (Michael Bagamian) 
- * @version (5/15/17)
+ * @version (5/18/17)
  */
 public class Runner
 {
     private static final int FRAME_WIDTH = 3000;
     private static final int FRAME_HEIGHT = 1000;
-    private static ArrayList<BalloonGUI> balloonList = new ArrayList<BalloonGUI>();	
+    private static ArrayList<BalloonGUI>  balloonList = new ArrayList<BalloonGUI>();
+    private static ArrayList<Spikes> spike = new ArrayList<Spikes>();
     public static void main(String[] args)
     {
         JFrame frame = new JFrame();
         JPanel pane = new JPanel();
-        pane.setBounds(0,0,1000,500);
-        //ImageIcon imageIcon = new ImageIcon("images.jpg"); //url: http://bhstorm.com/beautiful-sky-wallpapers-mobile/
-        //Image image = imageIcon.getImage();
-        //Image img2 = image.getScaledInstance(500,500, java.awt.Image.SCALE_SMOOTH); 
-        //imageIcon = new ImageIcon(img2);
-        //JLabel label=new JLabel(imageIcon);
-        ShadedBarGUI component2 = new ShadedBarGUI();
-        PlayerStatus player = new PlayerStatus();
+        // Image img2 = image.getScaledInstance(500,500, java.awt.Image.SCALE_SMOOTH); 
+        // imageIcon = new ImageIcon(img2);
+        // JLabel label=new JLabel(imageIcon);
+        //         Container contain = frame.getContentPane();
+        //         contain.setBackground(label);
         BalloonGUI component = new BalloonGUI();
-
-        pane.setLayout(new BoxLayout(pane,BoxLayout.PAGE_AXIS)); 
-        //pane.add(label, BorderLayout.CENTER); 
-        frame.add(pane);        
+        ShadedBarGUI component2=new ShadedBarGUI();
+        //         pane.setLayout(new BoxLayout(pane,BoxLayout.PAGE_AXIS)); 
+        // // pane.add(label, BorderLayout.CENTER); 
+        //         pane.add(component2);
+        //         pane.add(component);
+        //         JPanel newFram=pane;
+        //         frame.add(newFram);  
+        LayoutManager overlay=new OverlayLayout(pane);
+        pane.setLayout(overlay);
+        //       pane.add(label, BorderLayout.CENTER);
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        pane.add(component2);
+        ImageIcon imageIcon = new ImageIcon("images.jpg"); //url: http://bhstorm.com/beautiful-sky-wallpapers-mobile/
+        Image imag = imageIcon.getImage();
+        Image img2 = imag.getScaledInstance(FRAME_WIDTH,FRAME_HEIGHT, java.awt.Image.SCALE_SMOOTH); 
+        ImageIcon img=new ImageIcon(img2);
+        JLabel image=new JLabel(img);
+        pane.add(image,BorderLayout.CENTER);
+        frame.add(pane);
         frame.setTitle("Balloons Moving");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
         frame.setVisible(true);
 
-        pane.add(component2);
-        pane.add(component);
-        
-        for(int i = 0; 5 > i; i++)
+        PlayerStatus player = new PlayerStatus();
+
+        balloonList.add(component);
+
+        for(int i = 0; i < 5; i++)
         {
             BalloonGUI balloon = new BalloonGUI();
             balloonList.add(balloon);
@@ -55,21 +69,35 @@ public class Runner
             }
         }
 
+        for(int i = 0; i <= 80; i++)
+        {
+            Spikes spikes = new Spikes();
+            spike.add(spikes);
+            for(int j = 0; j < spike.size(); j++)
+            {
+                pane.add(spike.get(i));
+            }
+        }
+        
         class TimerListener implements ActionListener
         {
             public void actionPerformed(ActionEvent event)
             {
-                for(int j = 0; j < balloonList.size(); j++)
-                {
-                    (balloonList.get(j)).moveBy(0,2);
-                }
+                //                 for(int i = 0; i < 5; i++)
+                //                 {
+                //                     balloonList.get(i).moveBy(0,2);
+                //                     frame.repaint();
+                //                 }
+                balloonList.get(3).moveBy(0,1);
+                frame.repaint();
             }
         }
 
         ActionListener listener = new TimerListener();
 
-        final int DELAY = 100; // Milliseconds between timer ticks
+        final int DELAY = 10; // Milliseconds between timer ticks
         Timer t = new Timer(DELAY, listener);
         t.start();
     }
 }
+
