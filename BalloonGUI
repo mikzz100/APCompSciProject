@@ -22,9 +22,9 @@ public class BalloonGUI extends JComponent
 
     public void moveBy(int x, int y)
     {
-        if(this.y == 0)
+        if(this.y == 25)
         {
-            y = 0;
+            y = 25;
         }
         else
         {
