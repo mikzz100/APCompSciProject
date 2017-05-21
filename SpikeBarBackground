@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class SpikeBarBackground
 {
-    private int[] x= {0, 20, 40};
+    private int[] x= {-40, -20, 0};
     private int[] y= {0, 25, 0};
 
     public void draw(Graphics2D g2)
