@@ -1,85 +1,82 @@
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.OverlayLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
-import javax.swing.Timer;
 import java.io.File;
 import javax.imageio.ImageIO;
-import java.util.*;
-
 /**
- * Write a description of class Runner2 here.
+ * Write a description of class Runner here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (Michael Bagamian) 
+ * @version (5/18/17)
  */
 public class Runner
 {
     private static final int FRAME_WIDTH = 3000;
     private static final int FRAME_HEIGHT = 1000;
     private static ArrayList<BalloonGUI>  balloonList = new ArrayList<BalloonGUI>();
-
     public static void main(String[] args)
     {
         JFrame frame = new JFrame();
-        JPanel pane = new JPanel();
-
-        PlayerStatus player = new PlayerStatus();
-        SpikeBarBackgroundGUI sBB = new SpikeBarBackgroundGUI();
-
-        LayoutManager overlay = new OverlayLayout(pane);
-        pane.setLayout(overlay);
-
-        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-
-        ImageIcon imageIcon = new ImageIcon("images.jpg"); //url: http://bhstorm.com/beautiful-sky-wallpapers-mobile/
-        Image imag = imageIcon.getImage();
-        Image img2 = imag.getScaledInstance(FRAME_WIDTH,FRAME_HEIGHT, java.awt.Image.SCALE_SMOOTH); 
-        ImageIcon img = new ImageIcon(img2);
-
-        JLabel image = new JLabel(img);
-
-        pane.add(sBB);   
-       // pane.add(image,BorderLayout.CENTER);
-
-        frame.add(pane);
-        frame.setTitle("Balloons Moving");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
-        frame.setVisible(true);
-
-        for(int i = 0; i < 5; i++)
+        JFrame frameFirst=new JFrame("Welcome to the Balloon Game!");
+        frameFirst.setVisible(true);
+        frameFirst.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frameFirst.setSize(FRAME_WIDTH, FRAME_HEIGHT);        
+        JPanel paneFirst=new JPanel();
+        JButton playGame=new JButton("Play Now");
+        JButton tutorial=new JButton("How To Play");
+        //paneFirst.setLayout(new OverlayLayout(paneFirst));
+        paneFirst.add(playGame);
+        frameFirst.add(paneFirst);
+        JPanel pane=new JPanel();                        
+        class Action implements ActionListener
         {
-            BalloonGUI balloon = new BalloonGUI();
-            balloonList.add(balloon);
-            for(int j = 0; j < balloonList.size(); j++)
+            public void actionPerformed(ActionEvent e)
             {
-                pane.add(balloonList.get(i));
+                /*JFrame frameSecond=new JFrame("Game");
+                frameSecond.setVisible(true);
+                frameSecond.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+                JPanel paneSecond=new JPanel();
+                frameSecond.add(paneSecond);*/
+                BalloonGUI component = new BalloonGUI();
+                LayoutManager overlay=new OverlayLayout(pane);
+                pane.setLayout(overlay);
+                frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+                SpikeBarBackgroundGUI sBB = new SpikeBarBackgroundGUI();                                      
+                pane.add(sBB);    
+                pane.add(component);        
+                ImageIcon imageIcon = new ImageIcon("stockvault-sky1420691.jpg"); //url: https://fmirentals.com/weather-temps/
+                Image imag = imageIcon.getImage();
+                Image img2 = imag.getScaledInstance(FRAME_WIDTH,FRAME_HEIGHT, java.awt.Image.SCALE_SMOOTH); 
+                ImageIcon img=new ImageIcon(img2);
+                JLabel image=new JLabel(img);
+                pane.add(image,BorderLayout.CENTER);
+                frame.add(pane);
+                frame.setTitle("Balloons Moving");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
+                frame.setVisible(true);
+
+                class TimerListener implements ActionListener
+                {
+                    public void actionPerformed(ActionEvent event)
+                    {
+                        component.moveBy(0, 1);
+                        frame.repaint();
+                    }
+                }
+
+                ActionListener listener = new TimerListener();
+
+                final int DELAY = 10; // Milliseconds between timer ticks
+                Timer t = new Timer(DELAY, listener);
+                t.start();
             }
-        }
-
-        class TimerListener implements ActionListener
-        {
-            public void actionPerformed(ActionEvent event)
-            {
-                //                 for(int i = 0; i < 5; i++)
-                //                 {
-                //                     balloonList.get(i).moveBy(0,2);
-                //                     frame.repaint();
-                //                 }
-                balloonList.get(3).moveBy(0,1);
-                frame.repaint();
-            }
-        }
-
-        ActionListener listener = new TimerListener();
-
-        final int DELAY = 10; // Milliseconds between timer ticks
-        Timer t = new Timer(DELAY, listener);
-        t.start();
-        pane.add(image,BorderLayout.CENTER);
-
+        } 
+        playGame.addActionListener(new Action());
     }
 }
+
+
