@@ -1,0 +1,38 @@
+/**
+ * Write a description of class SpikeBarBackground here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+
+import java.awt.*;
+import javax.swing.*;
+
+public class SpikeBarBackground
+{
+    private int[] x= {0, 20, 40};
+    private int[] y= {0, 25, 0};
+    private Object obj; 
+    private Object obj2;
+
+    public void draw(Graphics2D g2)
+    {
+        //Draws the Spikes
+        for(int i = 0; i < 3000; i++)
+        {
+            x[0] = x[0]+40;
+            x[1] = x[1]+40;
+            x[2] = x[2]+40;
+
+            g2.setColor(Color.black);
+
+            g2.fillPolygon(x,y,x.length);
+        }
+
+        //Draws the Bar
+        Rectangle rect = new Rectangle(0, 75, 5000, 100);
+        g2.setColor(Color.pink);
+        g2.draw(rect);
+
+    }
+}
