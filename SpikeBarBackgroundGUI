@@ -1,0 +1,20 @@
+
+/**
+ * Write a description of class SpikeBarBackgroundGUI here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+
+import javax.swing.*;
+import java.awt.*;
+
+public class SpikeBarBackgroundGUI extends JPanel
+{
+    public void paintComponent(Graphics g)
+    {
+        Graphics2D g2 = (Graphics2D) g;
+        SpikeBarBackground sBB = new SpikeBarBackground();
+        sBB.draw(g2);
+    }
+}
