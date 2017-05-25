@@ -72,7 +72,7 @@ public class Runner
                 frame.setTitle("Balloons Moving");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);       
                 frame.setVisible(true);
-
+ 
                 class TimerListener implements ActionListener
                 {
                     public void actionPerformed(ActionEvent event)
@@ -81,6 +81,7 @@ public class Runner
                         frame.repaint();
                     }
                 }
+                
                 class Keys implements KeyListener
                 {
                     public void keyPressed(KeyEvent e)
@@ -91,15 +92,15 @@ public class Runner
                             frame.repaint();
                         }
                     }
-
+ 
                     public void keyTyped(KeyEvent e)
                     {
-
+ 
                     }
-
+ 
                     public void keyReleased(KeyEvent e)
                     {
-
+ 
                     }
                 }
                 ActionListener listener = new TimerListener();
@@ -112,5 +113,10 @@ public class Runner
         playGame.addActionListener(new Action());        
     }
 }
+ 
+ 
+ 
+
+
 
 
